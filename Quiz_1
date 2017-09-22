@@ -1,0 +1,66 @@
+
+#Quiz 1
+#Question 1
+# Principal Component Analysis
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+#Reading the Data set
+Data=pd.read_csv("G:\Fall 2017\ML\Datasets\dataset_1.csv")
+#converting the data to a Matrix
+Data_matrix=pd.DataFrame.as_matrix(Data)
+#Storing the dimensions of the matrix
+r,c=Data_matrix.shape
+#Mean Centering the matrix
+Data_m=Data_matrix-np.mean(Data_matrix,axis=0)
+#Transpose the matrix and Calculating the Covariance of it
+Data_m_Cov=np.cov(Data_m.T)
+#Calculating Eigen values and Eigen Vectors of the Covariance Matrix 
+Eigenvalue, Eigenvector = np.linalg.eig(Data_m_Cov)
+#Sorting the Eigen Values and Eigen Vectors in Descending order
+sort = np.argsort( Eigenvalue )[::-1]
+Eigenvector = np.matrix( Eigenvector[:,sort] )
+Eigenvalue = Eigenvalue[sort]
+#Number of principal Components
+ncomp = 2
+Feature_data = Eigenvector[:,:ncomp]
+#progjecting 
+Y=np.dot(Data,Feature_data)
+plt.plot(Y[:,0],Y[:,1])
+plt.show()
+
+
+#Calculating Variance of X and Y and Z
+X=Data_matrix[:,0]
+Var_X=np.var(X)
+#Var_X=0.080529305883999994
+Y=Data_matrix[:,1]
+Var_Y=np.var(Y)
+#Var_Y=2.096902591519
+Z=Data_matrix[:,2]
+Var_Z=np.var(Z)
+#Var_Y=0.080501954878999998
+
+#Covariance between X and Y
+Cov_xy=np.cov(X,Y)
+#Cov_xy=0.40242878
+
+
+#Covariance between Y and Z
+Cov_yz=np.cov(Y,Z)
+#Cov_yz=-0.01439466
+
+
+#Question 3
+A=np.array([[0,-1],[2,3]],dtype=int)
+Eigenvalue_A, Eigenvector_A = np.linalg.eig(A)
+#Eigen Values and Eigen Vectors
+#(array([ 1.,  2.]), array([[-0.70710678,  0.4472136 ],
+  #      [ 0.70710678, -0.89442719]]))
+  
+  
+  Eigen Values are same as manually Caluclated . But there can be infinite Eigen Vectors.
+
+
+
+
