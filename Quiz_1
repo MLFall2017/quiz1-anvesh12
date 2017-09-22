@@ -59,7 +59,7 @@ Eigenvalue_A, Eigenvector_A = np.linalg.eig(A)
   #      [ 0.70710678, -0.89442719]]))
   
   
-  Eigen Values are same as manually Caluclated . But there can be infinite Eigen Vectors.
+  #Eigen Values are same as manually Caluclated . But there can be infinite Eigen Vectors.
 
 
 
